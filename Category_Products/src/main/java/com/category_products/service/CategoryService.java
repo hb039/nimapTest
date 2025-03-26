@@ -1,4 +1,4 @@
-package com.services;
+package com.category_products.service;
 
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -6,8 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Repositories.CategoryRepository;
-import com.entities.Category;
+import com.category_products.model.Category;
+import com.category_products.repository.CategoryRepository;
+
 import java.util.Optional;
 
 @Service
@@ -23,17 +24,17 @@ public class CategoryService {
 		return categoryRepository.save(category);
 	}
 
-	public Category getCategoryById(Long id) {
+	public Category getCategoryById(int id) {
 		return categoryRepository.findById(id).orElseThrow();
 	}
 
-	public Category updateCategory(Long id, Category categoryDetails) {
+	public Category updateCategory(int id, Category categoryDetails) {
 		Category category = getCategoryById(id);
 		category.setName(categoryDetails.getName());
 		return categoryRepository.save(category);
 	}
 
-	public void deleteCategory(Long id) {
+	public void deleteCategory(int id) {
 		categoryRepository.deleteById(id);
 	}
 }

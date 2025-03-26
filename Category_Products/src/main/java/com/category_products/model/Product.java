@@ -1,25 +1,29 @@
-package com.entities;
+package com.category_products.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "products")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private int id;
 	private String name;
 	
 	private double price;
 	@ManyToOne
+	@JoinColumn(name="category_id", nullable = false)
 	private Category category;
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -40,7 +44,7 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Product(Long id, String name, double price, Category category) {
+	public Product(int id, String name, double price, Category category) {
 		super();
 		this.id = id;
 		this.name = name;

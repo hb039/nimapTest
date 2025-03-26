@@ -1,4 +1,4 @@
-package controller;
+package com.category_products.controller;
 
 
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.entities.Category;
-import com.services.CategoryService;
+import com.category_products.model.Category;
+import com.category_products.service.CategoryService;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -38,17 +38,17 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable Long id) {
+    public Category getCategoryById(@PathVariable int id) {
         return categoryService.getCategoryById(id);
     }
 
     @PutMapping("/{id}")
-    public Category updateCategory(@PathVariable Long id, @RequestBody Category categoryDetails) {
+    public Category updateCategory(@PathVariable int id, @RequestBody Category categoryDetails) {
         return categoryService.updateCategory(id, categoryDetails);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
+    public ResponseEntity<?> deleteCategory(@PathVariable int id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.ok().build();
     }
